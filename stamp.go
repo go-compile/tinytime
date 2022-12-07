@@ -23,25 +23,25 @@ func (s Stamp) Minutes() int64 {
 }
 
 func (s Stamp) Hours() int64 {
-	return int64((s / 60) / 60)
+	return int64(s / 3600)
 }
 
 func (s Stamp) TwoHours() int64 {
-	return int64((s/60)/60) / 2
+	return int64(s/3600) / 2
 }
 
 func (s Stamp) ThreeHours() int64 {
-	return int64((s/60)/60) / 3
+	return int64(s/3600) / 3
 }
 
 func (s Stamp) FourHours() int64 {
-	return int64((s/60)/60) / 4
+	return int64(s/3600) / 4
 }
 
 func (s Stamp) FiveHours() int64 {
-	return int64((s/60)/60) / 5
+	return int64(s/3600) / 5
 }
 
 func (s Stamp) Days() int64 {
-	return int64((s/60)/60) / 24
+	return int64(s/3600) / 24
 }
