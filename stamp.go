@@ -41,3 +41,7 @@ func (s Stamp) FourHours() int64 {
 func (s Stamp) FiveHours() int64 {
 	return int64((s/60)/60) / 5
 }
+
+func (s Stamp) Days() int64 {
+	return int64((s/60)/60) / 24
+}

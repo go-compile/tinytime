@@ -69,3 +69,12 @@ func TestFiveHours(t *testing.T) {
 		t.Error("returned incorrect fiveHours")
 	}
 }
+
+func TestDays(t *testing.T) {
+	timeStamp := int64(5529600) //64 days
+	s := unixtime.Unix(timeStamp)
+
+	if s.Days() != 64 {
+		t.Error("returned incorrect days")
+	}
+}
