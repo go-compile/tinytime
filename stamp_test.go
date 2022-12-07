@@ -33,3 +33,39 @@ func TestHours(t *testing.T) {
 		t.Error("returned incorrect hours")
 	}
 }
+
+func TestTwoHours(t *testing.T) {
+	timeStamp := int64(86400) //24 hours
+	s := unixtime.Unix(timeStamp)
+
+	if s.TwoHours() != 12 {
+		t.Error("returned incorrect twoHours")
+	}
+}
+
+func TestThreeHours(t *testing.T) {
+	timeStamp := int64(86400) //24 hours
+	s := unixtime.Unix(timeStamp)
+
+	if s.ThreeHours() != 8 {
+		t.Error("returned incorrect threeHours")
+	}
+}
+
+func TestFourHours(t *testing.T) {
+	timeStamp := int64(86400) //24 hours
+	s := unixtime.Unix(timeStamp)
+
+	if s.FourHours() != 6 {
+		t.Error("returned incorrect fourHours")
+	}
+}
+
+func TestFiveHours(t *testing.T) {
+	timeStamp := int64(86400) //24 hours
+	s := unixtime.Unix(timeStamp)
+
+	if s.FiveHours() != 4 {
+		t.Error("returned incorrect fiveHours")
+	}
+}
