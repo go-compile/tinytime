@@ -16,6 +16,15 @@ func TestCreateFromUnix(t *testing.T) {
 	}
 }
 
+func TestToBytes(t *testing.T) {
+	now := time.Now()
+	s := tinytime.Unix(now.Unix())
+
+	if tinytime.FromBytes(tinytime.ToBytes(s.Minutes())) != s.Minutes() {
+		t.Error("returned incorrect time")
+	}
+}
+
 func TestMinutes(t *testing.T) {
 	timeStamp := int64(30720) //512 minutes
 	s := tinytime.Unix(timeStamp)

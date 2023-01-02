@@ -54,8 +54,8 @@ func ToBytes(timestamp int64) []byte {
 	// right align bytes
 	binary.BigEndian.PutUint64(buf, uint64(timestamp))
 
-	// loop for all bytes other than the last 2
-	for i := 0; i < 6; i++ {
+	// loop for all bytes other than the last
+	for i := 0; i < 7; i++ {
 
 		// if byte empty delete it
 		if buf[0] == 0 {
@@ -68,4 +68,14 @@ func ToBytes(timestamp int64) []byte {
 	}
 
 	return buf
+}
+
+// FromBytes decodes a int of any size uint8 to int64
+func FromBytes(buf []byte) int64 {
+	// if buf less than 8 bytes add the appropriate amount to
+	// bring it back to 8
+	pad := make([]byte, 8-len(buf))
+	buf = append(pad, buf...)
+
+	return int64(binary.BigEndian.Uint64(buf))
 }
