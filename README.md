@@ -16,3 +16,25 @@ When storing TinyTime as bytes the smallest timestamp can be `2 bytes` or `3 byt
 ```sh
 go get github.com/go-compile/tinytime
 ```
+
+## Example
+More examples can be found in [the examples folder](./examples/).
+
+```go
+package main
+
+import (
+	"encoding/hex"
+	"fmt"
+
+	"github.com/go-compile/tinytime"
+)
+
+func main() {
+	d := tinytime.Now().Days()
+
+	// store in as small format as possible as HEX
+	fmt.Println("Smallest Possible:", tinytime.ToBytes(d))
+	fmt.Println("Smallest Possible (Hex):", hex.EncodeToString(tinytime.ToBytes(d)))
+}
+```
