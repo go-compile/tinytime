@@ -1,6 +1,7 @@
-package unixtime
+package tinytime
 
 import (
+	"encoding/binary"
 	"time"
 )
 
@@ -44,4 +45,27 @@ func (s Stamp) FiveHours() int64 {
 
 func (s Stamp) Days() int64 {
 	return int64(s/3600) / 24
+}
+
+// ToBytes will take a timestamp and format it as small as possible
+func ToBytes(timestamp int64) []byte {
+	buf := make([]byte, 8)
+
+	// right align bytes
+	binary.BigEndian.PutUint64(buf, uint64(timestamp))
+
+	// loop for all bytes other than the last 2
+	for i := 0; i < 6; i++ {
+
+		// if byte empty delete it
+		if buf[0] == 0 {
+			buf = buf[1:]
+			continue
+		}
+
+		// if byte not empty break because we have hit the timestamp
+		break
+	}
+
+	return buf
 }
