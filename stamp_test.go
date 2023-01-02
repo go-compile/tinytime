@@ -20,7 +20,60 @@ func TestToBytes(t *testing.T) {
 	now := time.Now()
 	s := tinytime.Unix(now.Unix())
 
-	if tinytime.FromBytes(tinytime.ToBytes(s.Minutes())) != s.Minutes() {
+	if tinytime.FromBytes(
+		tinytime.ToBytes(s.Minutes()),
+	) != s.Minutes() {
+		t.Error("returned incorrect time")
+	}
+}
+
+func TestToFixed16bit(t *testing.T) {
+	now := time.Now()
+	s := tinytime.Unix(now.Unix())
+
+	buf := tinytime.ToFixed(tinytime.ToBytes(s.Days()), 2)
+
+	if len(buf) != 2 {
+		t.Error("buffer does not equal fixed length")
+	}
+
+	if tinytime.FromBytes(
+		buf,
+	) != s.Days() {
+		t.Error("returned incorrect time")
+	}
+}
+
+func TestToFixed32bit(t *testing.T) {
+	now := time.Now()
+	s := tinytime.Unix(now.Unix())
+
+	buf := tinytime.ToFixed(tinytime.ToBytes(s.Minutes()), 4)
+
+	if len(buf) != 4 {
+		t.Error("buffer does not equal fixed length")
+	}
+
+	if tinytime.FromBytes(
+		buf,
+	) != s.Minutes() {
+		t.Error("returned incorrect time")
+	}
+}
+
+func TestToFixed64bit(t *testing.T) {
+	now := time.Now()
+	s := tinytime.Unix(now.Unix())
+
+	buf := tinytime.ToFixed(tinytime.ToBytes(s.Minutes()), 8)
+
+	if len(buf) != 8 {
+		t.Error("buffer does not equal fixed length")
+	}
+
+	if tinytime.FromBytes(
+		buf,
+	) != s.Minutes() {
 		t.Error("returned incorrect time")
 	}
 }
