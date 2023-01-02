@@ -4,7 +4,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/go-compile/unixtime"
+	unixtime "github.com/go-compile/tinytime"
 )
 
 func TestCreateFromUnix(t *testing.T) {
