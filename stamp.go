@@ -79,3 +79,17 @@ func FromBytes(buf []byte) int64 {
 
 	return int64(binary.BigEndian.Uint64(buf))
 }
+
+// ToFixed takes the output from func ToBytes() then either extends or truncates
+// it to fixed the desired length.
+// If you provide a buffer larger than length this function will panic to prevent
+// data loss.
+func ToFixed(buf []byte, length int) []byte {
+	if len(buf) > length {
+		panic("you cannot delete bytes which contain data")
+	}
+
+	// append needed bytes to the start
+	pad := make([]byte, length-len(buf))
+	return append(pad, buf...)
+}
